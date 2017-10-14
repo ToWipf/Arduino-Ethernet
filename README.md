@@ -10,6 +10,12 @@ Arduino Nano Ethernet shield
 
 Example:
 
+<!DOCTYPE html><html>
+<head>
+<title>Arduino</title>
+<meta name='viewport' content='width=device-width' />
+</head>
+<body>
 <br>Ausgang 1<font color='red'> Aus</font>
 <form method=get><input type=submit name=4 value='Ein'><input type=submit name=4 value='Aus'></form>
 <br>Ausgang 2<font color='red'> Aus</font>
@@ -24,3 +30,5 @@ Example:
 <br>Eingang 2 <font color='blue'> 188<br></font>
 <br>Eingang 3 <font color="blue"> 214<br></font>
 <br>Eingang 4 <font color='blue'> 264<br></font>
+</body>
+</html>
