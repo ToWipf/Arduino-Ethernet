@@ -17,7 +17,6 @@ void setup() {
   Ethernet.begin(mac, ip);
   server.begin();
   pinMode(4, OUTPUT);
-
 }
 
 void loop() {
@@ -26,22 +25,27 @@ void loop() {
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
-        if (readString.length() < 20) {
+        if (readString.length() < 24) {
           readString = readString + c;
         }
-        if (c == '\n')
-        {
+        if (c == '\n') {
+
+          client.println("HTTP/1.1 200 OK");
+          client.println("Content-Type: text/html");
+          client.println();
+
           client.print("{");
-          if (readString.indexOf("doOn")  > -1)
-          {
+
+
+          if (readString.indexOf("doOn")  > -1) {
             digitalWrite(4, HIGH);
             client.print("ON");
           }
-          if (readString.indexOf("doOff")  > -1)
-          {
+          else if (readString.indexOf("doOff")  > -1) {
             digitalWrite(4, LOW);
             client.print("OFF");
           }
+          
           client.print("}");
           readString = "";
 
