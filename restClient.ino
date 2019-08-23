@@ -3,8 +3,7 @@
 /*
   Rest
   Tobias Fritsch
-  20.08.2019
-
+  23.08.2019
 */
 
 #define OKT1 192
@@ -15,36 +14,25 @@
 byte mac[] = { MACBYTE, MACBYTE, MACBYTE, MACBYTE, MACBYTE, MACBYTE };
 IPAddress ip(OKT1, OKT2, OKT3, 242);
 EthernetServer server(80);
-
 String readString = String(20);
 
 void setup() {
-  Ethernet.begin(mac, ip);
-
   pinMode(4, OUTPUT);
-  pinMode(5, INPUT);
-  sendaMsg(false);
-
+  Ethernet.begin(mac, ip);
+  sendaMsg();
   server.begin();
 }
 
-void sendaMsg(boolean bUseBackupAddr) {
+void sendaMsg() {
 
   EthernetClient client;
   IPAddress IP;
-
-  if (bUseBackupAddr) {
-    IP = IPAddress(OKT1, OKT2, OKT3, 43);
-  } else {
-    IP = IPAddress(OKT1, OKT2, OKT3, 10);
-  }
-
+  IP = IPAddress(OKT1, OKT2, OKT3, 10);
   if (client.connect(IP, 8080)) {
     
     while ((client.available()) < 0) {
       delay(10);
     }
- 
     client.println(("GET /wipf/s HTTP/1.1\r\nHost: 0.0.0.0:8080\r\n\r\n"));
     //delay(1000);
     client.stop();
