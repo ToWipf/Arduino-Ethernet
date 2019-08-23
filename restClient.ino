@@ -94,10 +94,3 @@ void loop() {
     }
   }
 }
-          //stopping client
-          client.stop();
-        }
-      }
-    }
-  }
-}
